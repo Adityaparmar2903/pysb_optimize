@@ -13,7 +13,7 @@ colors = ['red', 'darkgreen', 'blue', 'cyan', 'magenta',
 method_list = ['Nelder-Mead', 'Powell', 'CG', 'BFGS', 'L-BFGS-B',
                'TNC', 'COBYLA', 'SLSQP', 'Newton-CG', 'trust-ncg', 'dogleg']
 
-num_ini = 5
+num_ini = 10
 num_timepoints = 101
 num_dim = 3
 t = np.linspace(0, 200, num_timepoints)
@@ -164,12 +164,12 @@ def plot_obj_func():
         plt.grid(True)
 
 def plot_obj_func_sort(index):
-    plt.figure
+    plt.figure()
     inds = obj_func_val[index].argsort()
     for j in range(len(method_list)):
         obj_func_val[j] = obj_func_val[j][inds]
     for i, meth in enumerate(method_list):
-        plt.plot(ind+1, sorted(obj_func_val[i]), linestyle = 'solid',
+        plt.plot(ind+1, obj_func_val[i], linestyle = 'solid',
                  marker='.', markeredgewidth=0.0, color = colors[i] , label = meth)
         plt.legend()
         plt.xlabel("Run Index")
@@ -177,7 +177,7 @@ def plot_obj_func_sort(index):
         plt.grid(True)
 
 plot_obj_func()
-plot_obj_func_sort()
+plot_obj_func_sort(1)
 
 
 
